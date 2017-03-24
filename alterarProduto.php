@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Alterar veículo:
+                            Alterar produto:
                         </h1>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Placa</th>
+                                        <th>ID</th>
                                         <th>Tipo</th>
-                                        <th>Data de aquisição</th>
+                                        <th>Nome</th>
                                         <th>Status</th>
                                         <th>Descrição</th>
                                         <th>Opção</th>
@@ -112,39 +112,34 @@
                                         include 'class.db.php';
                                         $C = new DB();
 
-                                        $placa_antiga = $_POST['placa'];
+                                        $id = $_POST['id'];
 
-                                        $query = "SELECT Placa, Tipo, Data_aq, Status, Descricao FROM Veiculos WHERE Placa = '".$placa_antiga."';";
-
-                                        //echo "QUERY: $query";
+                                        $query = "SELECT ID, Tipo, Nome, Status, Descricao FROM produtos WHERE ID = '".$id."';";
 
                                         $results = $C->get_results($query);
 
                                         foreach( $results as $row ){
-                                            echo "<form action='alteracaoVeiculo.php' method='post'>";
-                                            if ($row['Status']=='Livre')
+                                            echo "<form action='alteracaoProduto.php' method='post'>";
+                                            if ($row['Status']=='Disponível')
                                                 echo "<tr class='success'>";
-                                            if ($row['Status']=='Ocupado')
+                                            if ($row['Status']=='Não disponível')
                                                 echo "<tr class='danger'>";
-                                            if ($row['Status']=='Manutenção')
-                                                echo "<tr class='warning'>";
-                                            echo "<td><input pattern='[A-Z]{3}\-[0-9]{4}' class='form-control' type='text' name='placa' size='10' value=".$row['Placa']."></td>";
+                                            echo "<td><input class='form-control' type='text' name='id' size='8' value=".$row['ID']."></td>";
                                             echo "<td><select name='tipo' class='form-control'>
                                                     <option>".$row['Tipo']."</option>
-                                                    <option>Moto</option>
-                                                    <option>Carro</option>
-                                                    <option>Van</option>
-                                                    <option>Caminhão</option>
+                                                    <option>Pizza</option>
+                                                    <option>Lanche</option>
+                                                    <option>Comida Japonesa</option>
+                                                    <option>Variados</option>
                                                 </select></td>";
-                                            echo "<td><input pattern='[0-9]{2}\/[0-9]{2}\/[0-9]{4}$' class='form-control' type='text' name='data_aq' size='10' value=".$row['Data_aq']."></td>";
+                                            echo "<td><input class='form-control' type='text' name='nome' size='10' value=".$row['Nome']."></td>";
                                             echo "<td><select name='status' class='form-control'>
                                                     <option>".$row['Status']."</option>
-                                                    <option>Livre</option>
-                                                    <option>Ocupado</option>
-                                                    <option>Manutenção</option>
+                                                    <option>Disponível</option>
+                                                    <option>Não disponível</option>
                                                 </select></td>";
                                             echo "<td><input class='form-control' type='text' name='descricao' value=".$row['Descricao']."></td>";
-                                            echo "<td><button name='placa_antiga' value='$placa_antiga' type='submit' class='btn btn-xs btn-primary'>Salvar</button>
+                                            echo "<td><button name='id' value='$id' type='submit' class='btn btn-xs btn-primary'>Salvar</button>
                                             </form></td></tr>";
                                         }
 

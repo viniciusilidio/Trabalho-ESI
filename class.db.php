@@ -43,7 +43,7 @@
  Examples below assume the class has been iniated using $database = DB::getInstance();
 ********************************/
     define( 'DB_USER', 'root' ); // set database user
-    define( 'DB_NAME', 'Transportadora' ); // set database name
+    define( 'DB_NAME', 'ranga_aqui' ); // set database name
     define( 'DB_PASS', '' ); // set database password
     define( 'DB_HOST', 'localhost' ); // set database host
     
@@ -87,7 +87,7 @@ class DB
         }
         else
         {
-            trigger_error( $message );
+                trigger_error( $message );
         }
 
         if( !defined( 'DISPLAY_DEBUG' ) || ( defined( 'DISPLAY_DEBUG' ) && DISPLAY_DEBUG ) )

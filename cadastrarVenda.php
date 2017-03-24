@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -105,7 +105,7 @@
                                     <?php
                                         include 'class.db.php';
                                         $C = new DB();
-                                        $query = "SELECT CPF, Nome, Sobrenome FROM Pessoas;";
+                                        $query = "SELECT CPF, Nome, Sobrenome FROM Clientes;";
 
                                         $results = $C->get_results( $query );
                                         foreach( $results as $row ){
@@ -124,7 +124,7 @@
                                     <?php
                                         //include 'class.db.php';
                                         //$C = new DB();
-                                        $query = "SELECT CPF, Nome, Sobrenome FROM Pessoas;";
+                                        $query = "SELECT CPF, Nome, Sobrenome FROM Clientes;";
 
                                         $results = $C->get_results( $query );
                                         foreach( $results as $row ){

@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Remover veículo:
+                            Remover produto:
                         </h1>
                     </div>
                 </div>
@@ -98,13 +98,13 @@
 						<?php
                             include 'Classes.php';
 
-                            $placa = $_POST["placa"];
+                            $id = $_POST["id"];
 
-                            $V = new Veiculo(NULL,NULL,NULL,NULL,NULL);
+                            $V = new Produto(NULL,NULL,NULL,NULL,NULL);
 							
                             include 'class.db.php';
 							$C = new DB();
-                            $V->RemoveVeiculo($C,$placa);
+                            $V->RemoveProduto($C,$id);
 						?>
                     </div>
                 </div>

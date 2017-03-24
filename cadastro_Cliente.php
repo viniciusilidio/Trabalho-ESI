@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastrar pessoa:
+                            Cadastrar cliente:
                         </h1>
                     </div>
                 </div>
@@ -98,11 +98,11 @@
 						<?php
 							include 'Classes.php';
 
-							$P = new Pessoa($_POST["nome"], $_POST["sobrenome"], $_POST["rua"], $_POST["numero"], $_POST["complemento"], $_POST["bairro"], $_POST["cidade"], $_POST["uf"], $_POST["cep"], $_POST["cpf"], $_POST["telefone"]);
+							$P = new Cliente($_POST["nome"], $_POST["sobrenome"], $_POST["rua"], $_POST["numero"], $_POST["complemento"], $_POST["bairro"], $_POST["cidade"], $_POST["uf"], $_POST["cep"], $_POST["cpf"], $_POST["telefone"]);
 							
                             include 'class.db.php';
 							$C = new DB();
-							$P->InserePessoa($C);
+							$P->InsereCliente($C);
 						?>
                     </div>
                 </div>

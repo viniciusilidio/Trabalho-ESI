@@ -10,7 +10,7 @@
     <link rel="icon" href="favicon-truck.ico">
 
 
-    <title>Cadastrar veículo</title>
+    <title>Cadastrar Produto</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -101,7 +101,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Cadastrar veículo:
+                            Cadastrar Produto:
                         </h1>
                     </div>
                 </div>
@@ -113,11 +113,11 @@
                             include 'Classes.php';
                             $p = $_POST;
 
-                            $V = new Veiculo($p['placa'],$p['tipo'],$p['data_aq'],$p['descricao'],$p['status']);     
+                            $V = new Produto($p['id'],$p['tipo'],$p['nome'],$p['descricao'],$p['status']);     
 
                             include 'class.db.php';
                             $C = new DB();
-                            $V->InsereVeiculo($C); 
+                            $V->InsereProduto($C); 
 						?>
                     </div>
                 </div>

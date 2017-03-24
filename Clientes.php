@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Pessoas:
+                            Clientes:
                         </h1>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                             $C = new DB();
 
 
-                            $query = "SELECT Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone FROM Pessoas";
+                            $query = "SELECT Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone FROM Clientes";
                             $results = $C->get_results( $query );
                             
                             foreach( $results as $row ){
@@ -125,12 +125,12 @@
                                             </div>
                                             <div class='row'>
                                                 <div align='right' class='col-sm-6'>
-                                                    <form action='alterarPessoa.php' method='post'>
+                                                    <form action='alterarCliente.php' method='post'>
                                                         <button name='cpf' value=".$row['CPF']." type='submit' class='btn btn-primary'>Alterar</button>
                                                     </form>
                                                 </div>
                                                 <div class='col-sm-6'>
-                                                    <form action='removerPessoa.php' method='post'>
+                                                    <form action='removerCliente.php' method='post'>
                                                         <button name='cpf' value=".$row['CPF']." type='submit' class='btn btn-danger'>Remover</button>
                                                     </form>
                                                     <br><br>

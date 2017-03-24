@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -114,7 +114,7 @@
 
                                         $cpf = $_POST["cpf"];
 
-                                        $query = "SELECT Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone FROM Pessoas WHERE CPF =  '".$cpf."';";
+                                        $query = "SELECT Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone FROM Clientes WHERE CPF =  '".$cpf."';";
 
                                         //echo "QUERYALTERARPESSOA: $query";
 
@@ -122,7 +122,7 @@
 
                                         foreach( $results as $row ){
                                             $CPF_Antigo = $row['CPF'];
-                                            echo "<form action='alteracaoPessoa.php' method='post'>";
+                                            echo "<form action='alteracaoCliente.php' method='post'>";
                                             echo "<tr>";
                                             echo "<td><input class='form-control' type='text' name='nome' value=".$row['Nome']."></td>";
                                             echo "<td><input class='form-control' type='text' name='sobrenome' value=".$row['Sobrenome']."></td>";

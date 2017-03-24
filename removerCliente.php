@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -99,11 +99,11 @@
                             $cpf = $_POST["cpf"];
 
                             include 'Classes.php';
-							$P = new Pessoa(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+							$P = new Cliente(NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 							
                             include 'class.db.php';
 							$C = new DB();
-                            $P->RemovePessoa($C, $cpf);
+                            $P->RemoveCliente($C, $cpf);
 						?>
                     </div>
                 </div>

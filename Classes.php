@@ -1,49 +1,49 @@
 <?php
 
-class Veiculo {
-	private $Placa;
+class Produto {
+	private $ID;
 	private $Tipo;
-	private $Data_aq;
+	private $Nome;
 	private $Descricao;
 	private $Status;
 
-	public function Veiculo($placa,$tipo,$data_aq,$descricao,$status){
-		$this->Placa = $placa;
+	public function Produto($id,$tipo,$nome,$descricao,$status){
+		$this->ID = $id;
 		$this->Tipo = $tipo;
-		$this->Data_aq = $data_aq;
+		$this->Nome = $nome;
 		$this->Descricao = $descricao;
 		$this->Status = $status;
 	}
 
-	public function AlteraVeiculo($C, $Placa_antiga){
-		$query = "UPDATE Veiculos SET Tipo='".$this->Tipo."', Placa='".$this->Placa."', Data_aq='".$this->Data_aq."', Descricao='".$this->Descricao."', Status='".$this->Status."' WHERE Placa = '".$Placa_antiga."';";
+	public function AlterarProduto($C, $ID){
+		$query = "UPDATE Produtos SET Tipo='".$this->Tipo."', ID='".$this->ID."', Nome='".$this->Nome."', Descricao='".$this->Descricao."', Status='".$this->Status."' WHERE ID = '".$ID."';";
 
 		if ($C->query($query))
-			echo "<p>$this->Placa atualizado com sucesso!</p>";
+			echo "<p>$this->ID atualizado com sucesso!</p>";
 
 		$C->disconnect();
 	}
 
-	public function InsereVeiculo($C){
-		$query = "INSERT INTO Veiculos (Placa, Tipo, Data_aq, Descricao, Status) VALUES ('".$this->Placa."', '".$this->Tipo."', '".$this->Data_aq."', '".$this->Descricao."','".$this->Status."');";
+	public function InsereProduto($C){
+		$query = "INSERT INTO Produtos (ID, Tipo, Nome, Descricao, Status) VALUES ('".$this->ID."', '".$this->Tipo."', '".$this->Nome."', '".$this->Descricao."','".$this->Status."');";
 		
 		if ($C->query($query))
-            echo "<p>$this->Placa inserido com sucesso!</p>";
+            echo "<p>$this->ID inserido com sucesso!</p>";
 
         $C->disconnect();
 	}
 
-	public function RemoveVeiculo($C,$placa){
-		$query = "DELETE FROM Veiculos WHERE Placa = '".$placa."';";
+	public function RemoveProduto($C,$id){
+		$query = "DELETE FROM Produtos WHERE ID = '".$id."';";
 
 		if ($C->query($query))
-			echo "<p>$placa removido com sucesso!</p>";
+			echo "<p>$id removido com sucesso!</p>";
 
 		$C->disconnect();
 	}
 }
 
-class Encomenda {
+class Venda {
 	private $CPF_Remetente;
 	private $CPF_Destinatario;
 	private $Veiculo;
@@ -95,7 +95,7 @@ class Encomenda {
 	}
 }
 
-class Pessoa {
+class Cliente {
 	private $Nome;
 	private $Sobrenome;
 	private $Rua;
@@ -108,7 +108,7 @@ class Pessoa {
 	private $CPF;
 	private $Telefone;
 
-	public function Pessoa($nome, $sobrenome, $rua, $numero, $complemento, $bairro, $cidade, $uf, $cep, $cpf, $telefone) {
+	public function Cliente($nome, $sobrenome, $rua, $numero, $complemento, $bairro, $cidade, $uf, $cep, $cpf, $telefone) {
 		$this->Nome = $nome;
 		$this->Sobrenome = $sobrenome;
 		$this->Rua = $rua;
@@ -122,8 +122,8 @@ class Pessoa {
 		$this->Telefone = $telefone;
 	}
 
-	public function AlteraPessoa($C, $CPF_Antigo){
-		$query = "UPDATE Pessoas SET Nome='".$this->Nome."', Sobrenome='".$this->Sobrenome."', Rua='".$this->Rua."', Numero=".$this->Numero.", Complemento='".$this->Complemento."', Bairro='".$this->Bairro."', Cidade='".$this->Cidade."', UF='".$this->UF."', CEP='".$this->CEP."', CPF='".$this->CPF."', Telefone='".$this->Telefone."'  WHERE CPF = '".$CPF_Antigo."';";
+	public function AlteraCliente($C, $CPF_Antigo){
+		$query = "UPDATE Clientes SET Nome='".$this->Nome."', Sobrenome='".$this->Sobrenome."', Rua='".$this->Rua."', Numero=".$this->Numero.", Complemento='".$this->Complemento."', Bairro='".$this->Bairro."', Cidade='".$this->Cidade."', UF='".$this->UF."', CEP='".$this->CEP."', CPF='".$this->CPF."', Telefone='".$this->Telefone."'  WHERE CPF = '".$CPF_Antigo."';";
 
 		if ($C->query($query))
 			echo "<p>$this->Nome $this->Sobrenome atualizado(a) com sucesso!</p>";
@@ -131,8 +131,8 @@ class Pessoa {
 		$C->disconnect();
 	}
 
-	public function InserePessoa($C){
-		$query = "INSERT INTO Pessoas (Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone) VALUES ( '".$this->Nome."','".$this->Sobrenome."','".$this->Rua."',".$this->Numero.",'".$this->Complemento."','".$this->Bairro."','".$this->Cidade."','".$this->UF."','".$this->CEP."','".$this->CPF."','".$this->Telefone."');";
+	public function InsereCliente($C){
+		$query = "INSERT INTO Clientes (Nome,Sobrenome,Rua,Numero,Complemento,Bairro,Cidade,UF,CEP,CPF,Telefone) VALUES ( '".$this->Nome."','".$this->Sobrenome."','".$this->Rua."',".$this->Numero.",'".$this->Complemento."','".$this->Bairro."','".$this->Cidade."','".$this->UF."','".$this->CEP."','".$this->CPF."','".$this->Telefone."');";
 
 		if ($C->query($query))
 			echo "<p>$this->Nome $this->Sobrenome cadastrado(a) com sucesso!</p>";
@@ -140,8 +140,8 @@ class Pessoa {
 		$C->disconnect();
 	}
 
-	public function RemovePessoa($C, $cpf){
-		$query = "DELETE FROM Pessoas WHERE CPF = '".$cpf."';";
+	public function RemoveCliente($C, $cpf){
+		$query = "DELETE FROM Clientes WHERE CPF = '".$cpf."';";
 
 		if ($C->query($query))
 			echo "<p>$cpf removido com sucesso!</p>";

@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon-truck.ico">
 
-    <title>Transportadora Transportadora</title>
+    <title>Ranga Aqui!</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Veículos:
+                            Produtos:
                         </h1>
                     </div>
                 </div>
@@ -99,9 +99,9 @@
                             <table class="table table-bordered table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="11%">Placa</th>
+                                        <th width="11%">ID</th>
                                         <th width="11%">Tipo</th>
-                                        <th width="18%">Data de aquisição</th>
+                                        <th width="18%">Nome</th>
                                         <th width="12%">Status</th>
                                         <th>Descrição</th>
                                         <th colspan="2" width="15%">Opções</th>
@@ -113,28 +113,26 @@
                                         $C = new DB();
 
 
-                                        $query = "SELECT Placa, Tipo, Data_aq, Status, Descricao FROM Veiculos";
+                                        $query = "SELECT ID, Tipo, Nome, Status, Descricao FROM Produtos";
                                         $results = $C->get_results( $query );
                                         
                                         foreach( $results as $row ){
-                                            if ($row['Status']=='Livre')
+                                            if ($row['Status']=='Disponivel')
                                                 echo "<tr class='success'>";
-                                            if ($row['Status']=='Ocupado')
+                                            if ($row['Status']=='Não disponível')
                                                 echo "<tr class='danger'>";
-                                            if ($row['Status']=='Manutenção')
-                                                echo "<tr class='warning'>";
-                                            echo "<td>".$row['Placa']."</td>";
+                                            echo "<td>".$row['ID']."</td>";
                                             echo "<td>".$row['Tipo']."</td>";
-                                            echo "<td>".$row['Data_aq']."</td>";
+                                            echo "<td>".$row['Nome']."</td>";
                                             echo "<td>".$row['Status']."</td>";
                                             echo "<td>".$row['Descricao']."</td>";
                                             echo "<td>
-                                            <form action='alterarVeiculo.php' method='post'>
-                                                <button name='placa' value='".$row['Placa']."' type='submit' class='btn btn-xs btn-primary'>Alterar</button>
+                                            <form action='alterarProduto.php' method='post'>
+                                                <button name='id' value='".$row['ID']."' type='submit' class='btn btn-xs btn-primary'>Alterar</button>
                                             </form></td>
                                             <td>
-                                            <form action='removerVeiculo.php' method='post'>
-                                                <button name='placa' value='".$row['Placa']."' type='submit' class='btn btn-xs btn-danger'>Remover</button>
+                                            <form action='removerProduto.php' method='post'>
+                                                <button name='id' value='".$row['ID']."' type='submit' class='btn btn-xs btn-danger'>Remover</button>
                                             </form></td>
                                             </tr>";
                                         }
