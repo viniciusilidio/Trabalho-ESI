@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon-truck.ico">
+
+    <title>Ranga Aqui!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom CSS -->
+    <link href="./css/sb-admin.css" rel="stylesheet" type="text/css">
+    <!-- Morris Charts CSS -->
+    <link href="./css/plugins/morris.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="./font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Ranga Aqui!</a>
+            </div>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-home"></i> Página Inicial</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#Clientes"><i class="fa fa-fw fa-users"></i> Usuarios <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="Clientes" class="collapse">
+                            <li>
+                               <a href="cadastrarUsuario.html"><i class="fa fa-fw fa-edit"></i>Cadastrar Usuários</a>
+                            </li>
+                            <li>
+                             <a href="Usuarios.php"><i class="fa fa-fw fa-bars"></i>Consultar Usuarios</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#encomendas"><i class="fa fa-fw fa-archive"></i> Produtos <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="encomendas" class="collapse">
+                            <li>
+                               <a href="cadastrarEncomenda.php"><i class="fa fa-fw fa-edit"></i>Novo Produto</a>
+                            </li>
+                            <li>
+                             <a href="Encomendas.php"><i class="fa fa-fw fa-bars"></i>Listar Encomendas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#veiculos"><i class="fa fa-fw fa-truck"></i> Veículos <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="veiculos" class="collapse">
+                            <li>
+                               <a href="cadastrarVeiculo.html"><i class="fa fa-fw fa-edit"></i>Cadastrar Veículo</a>
+                            </li>
+                            <li>
+                             <a href="Veiculos.php"><i class="fa fa-fw fa-bars"></i>Listar Veículos</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Ranga Aqui!<br>
+                            <small>Trabalho Final de Engenharia de Software I</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <strong>Alunos:</strong> Gustavo Nunes<br>
+                                <strong>Alunos:</strong> Vinícius Ilídio<br>
+                            </li>
+                        </ol>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="alert alert-info alert-dismissable">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <i class="fa fa-info-circle"></i>  <strong>Dica de uso: </strong> Comece navegando pelos menus expansíveis ao lado. Cada um possui 2 opções: Cadastrar e Consultar. Na página de consultas é possível Alterar e Remover o registro.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+
+</body>
+
+</html>
+
+<!--
+Classe. Sequência, Doc req.
+
+Testes
+
+-->
