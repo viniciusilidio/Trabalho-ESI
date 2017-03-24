@@ -44,8 +44,7 @@
 ********************************/
     define( 'DB_USER', 'root' ); // set database user
     define( 'DB_NAME', 'Transportadora' ); // set database name
-    //define( 'DB_PASS', '' ); // set database password
-    define( 'DB_PASS', 'senhadomysql' ); // set database password
+    define( 'DB_PASS', '' ); // set database password
     define( 'DB_HOST', 'localhost' ); // set database host
     
     // define( 'DB_USER', 'a1975194_root' ); // set database user
