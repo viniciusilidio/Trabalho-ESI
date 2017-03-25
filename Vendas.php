@@ -99,23 +99,14 @@
                             <?php
                                 include 'class.db.php';
                                 $C = new DB();
-
-                                $query = "SELECT Placa,VD,CPF_Remetente,Nome RNome, Sobrenome RSobrenome,Rua RRua,Numero RNumero,Complemento RComplemento,Bairro RBairro,Cidade RCidade,UF RUF,CEP RCEP,Telefone RTelefone,CPF_Destinatario,DNome,DSobrenome,DRua,DNumero,DComplemento,DBairro,DCidade,DUF,DCEP,DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,VD,CPF_Remetente,CPF_Destinatario, Nome DNome, Sobrenome DSobrenome,Rua DRua, Numero DNumero, Complemento DComplemento, Bairro DBairro, Cidade DCidade, UF DUF, CEP DCEP, Telefone DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,Veiculos.Descricao VD,CPF_Remetente,CPF_Destinatario,Peso,Dimensao,Codigo,Vendas.Status ES,Vendas.Descricao ED,Data_envio,Data_entrega FROM Veiculos JOIN Vendas ON Veiculo = Placa ) AS T1 ON CPF = CPF_Destinatario ) AS T2 ON Clientes.CPF = CPF_Remetente;";
+                                
+                                $query = "SELECT Codigo, Descricao, Data_pedido, ID_produto, Tipo, Nome_Produto,CPF_Cliente, Nome_Cliente, Sobrenome, Rua, Numero, Complemento, Bairro, Cidade, UF, CEP, Telefone FROM vendas NATURAL JOIN (SELECT CPF CPF_Cliente, Nome Nome_Cliente, Sobrenome, Rua, Numero, Complemento, Bairro, Cidade, UF, CEP, Telefone from clientes) as T1 NATURAL JOIN (SELECT ID ID_produto, Tipo, Nome Nome_produto, preco FROM produtos) as T2";
 
                                 $results = $C->get_results( $query );
                                 foreach( $results as $row ){
                                     echo "<table class='table table-bordered table-hover table-striped'>";
-                                    if ($row['ES']=='Entregue')
-                                        $tstatus = "panel-green";
-                                    if ($row['ES']=='A caminho')
-                                        $tstatus = "panel-primary";
-                                    if ($row['ES']=='Erro')
-                                        $tstatus = "panel-red";
-                                    if ($row['ES']=='Em preparação')
-                                        $tstatus = "panel-yellow";
-
                                     echo "
-                                    <div class='panel ".$tstatus."'>
+                                    <div class='panel panel-green'>
                                         <div class='panel-heading'>
                                             <h3 class='panel-title'><strong>Código: </strong>".$row['Codigo']."</h3>
                                         </div>
@@ -123,66 +114,43 @@
                                             <div class='row'>
                                                 <div class='col-sm-4'>
                                                     <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Status:</strong> ".$row['ES']."</h3>
+                                                        <h3 class='panel-title'><strong>ID do Produto:</strong> ".$row['ID_produto']."</h3>
                                                     </div>
                                                 </div>
                                                 <div class='col-sm-4'>
                                                     <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Veículo:</strong> ".$row['Placa']." - ".$row['VD']."</h3>
+                                                        <h3 class='panel-title'><strong>Tipo do Produto:</strong> ".$row['Tipo']."</h3>
                                                     </div>
                                                 </div>
-                                                <div class='col-sm-2'>
+                                                <div class='col-sm-4'>
                                                     <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Peso:</strong> ".$row['Peso']." kg</h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-2'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Dimensão:</strong> ".$row['Dimensao']."</h3>
+                                                        <h3 class='panel-title'><strong>Produto:</strong> ".$row['Nome_produto']."</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class='row'>
                                                 <div class='col-sm-4'>
                                                     <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Data do envio:</strong> ".$row['Data_envio']."</h3>
+                                                        <h3 class='panel-title'><strong>Data e hora do pedido:</strong> ".$row['Data_pedido']."</h3>
                                                     </div>
                                                 </div>
                                                 <div class='col-sm-4'>
                                                     <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Data da entrega:</strong> ".$row['Data_entrega']."</h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Descrição:</strong> ".$row['ED']."</h3>
+                                                        <h3 class='panel-title'><strong>Descrição:</strong> ".$row['Descricao']."</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class='row'>
-                                                <div class='col-sm-6'>
-                                                    <div class='panel ".$tstatus."'>
+                                                <div class='col-sm-9'>
+                                                    <div class='panel panel-green'>
                                                         <div class='panel-body'>
-                                                            <strong>Remetente:</strong> ".$row['RNome']." ".$row['RSobrenome']."<br>
-                                                            <strong>CPF: </strong> ".$row['CPF_Remetente']."<br>
-                                                            <strong>Endereço: </strong>".$row['RRua'].", ".$row['RNumero']." ".$row['RComplemento']."<br>
-                                                            ".$row['RBairro']."<br>
-                                                            ".$row['RCidade']." - ".$row['RUF']."<br>
-                                                            ".$row['RCEP']."<br>
-                                                            <strong>Telefone: </strong>".$row['RTelefone']."<br>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-6'>
-                                                    <div class='panel ".$tstatus."'>
-                                                        <div class='panel-body'>
-                                                            <strong>Destinatário:</strong> ".$row['DNome']." ".$row['DSobrenome']." <br>
-                                                            <strong>CPF: </strong>".$row['CPF_Destinatario']."<br>
-                                                            <strong>Endereço: </strong>".$row['DRua'].", ".$row['DNumero']." ".$row['DComplemento']."<br>
-                                                            ".$row['DBairro']."<br>
-                                                            ".$row['DCidade']." - ".$row['DUF']."<br>
-                                                            ".$row['DCEP']."<br>
-                                                            <strong>Telefone: </strong>".$row['DTelefone']."<br>
+                                                            <strong>Remetente:</strong> ".$row['Nome_Cliente']." ".$row['Sobrenome']."<br>
+                                                            <strong>CPF: </strong> ".$row['CPF_Cliente']."<br>
+                                                            <strong>Endereço: </strong>".$row['Rua'].", ".$row['Numero'].".  Bairro ".$row['Bairro'].".<br>
+                                                            <strong>Complemento: </strong>".$row['Complemento']." <br>
+                                                            <strong>Cidade: </strong>".$row['Cidade']." - ".$row['UF']."<br>
+                                                            <strong>CEP: </strong>".$row['CEP']."<br>
+                                                            <strong>Telefone: </strong>".$row['Telefone']."<br>
                                                         </div>
                                                     </div>
                                                 </div>
