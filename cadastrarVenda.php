@@ -99,9 +99,9 @@
                             <form role='form' action='cadastro_Venda.php' method='post'>
 
                             <div class='form-group'>
-                                <label>CPF do remetente:</label>
-                                <select name="cpf_remetente" class="form-control" required>
-                                    <option disabled selected value="">Remetente</option>
+                                <label>CPF do Cliente:</label>
+                                <select name="cpf_cliente" class="form-control" required>
+                                    <option disabled selected value="">Cliente</option>
                                     <?php
                                         include 'class.db.php';
                                         $C = new DB();
@@ -118,86 +118,24 @@
                             </div>
 
                             <div class='form-group'>
-                                <label>CPF do destinatário:</label>
-                                <select name="cpf_destinatario" class="form-control" required>
-                                    <option disabled selected value="">Destinatário</option>
+                                <label>Produto:</label>
+                                <select name="produto" class="form-control" required>
+                                    <option disabled selected value="">Produtos disponíveis</option>
                                     <?php
                                         //include 'class.db.php';
                                         //$C = new DB();
-                                        $query = "SELECT CPF, Nome, Sobrenome FROM Clientes;";
+                                        $query = "SELECT Nome, ID, Descricao, Status FROM Produtos;";
 
                                         $results = $C->get_results( $query );
                                         foreach( $results as $row ){
-                                            echo "<option value='".$row[CPF]."'>".$row[CPF]." - ".$row[Nome]." ".$row[Sobrenome]."</option>";
-                                        }
-                                        
-                                        //$C->disconnect();
-                                    ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Peso:</label>
-                                <input name="peso" class="form-control" placeholder="Peso" required>
-                                <p class="help-block">Em quilogramas (15.20 kg)</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Dimensão:</label>
-                                <select name="dimensao" class="form-control">
-                                    <option disabled selected>Selecione</option>
-                                    <option value="Carta/Envelope">Carta/Envelope</option>
-                                    <option value="XP">XP</option>
-                                    <option value="P">P</option>
-                                    <option value="M">M</option>
-                                    <option value="G">G</option>
-                                    <option value="XG">XG</option>
-                                    <option value="Tubo">Tubo</option>
-                                </select>
-                            </div>
-
-                            <div class='form-group'>
-                                <label>Veículo:</label>
-                                <select name="veiculo" class="form-control" required>
-                                    <option disabled selected value="">Veículos disponíveis</option>
-                                    <?php
-                                        //include 'class.db.php';
-                                        //$C = new DB();
-                                        $query = "SELECT Placa, Descricao, Status FROM Veiculos;";
-
-                                        $results = $C->get_results( $query );
-                                        foreach( $results as $row ){
-                                            if ($row[Status]=='Livre')
-                                                echo "<option value='".$row[Placa]."'>".$row[Placa]." - ".$row[Descricao]."</option>";
+                                            if ($row[Status]=='Disponível')
+                                                echo "<option value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]."</option>";
                                             else
-                                                echo "<option disabled value='".$row[Placa]."'>".$row[Placa]." - ".$row[Descricao]." (".$row[Status].")</option>";
+                                                echo "<option disabled value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]." (".$row[Status].")</option>";
                                         }
                                         
                                         $C->disconnect();
                                     ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Data de envio:</label>
-                                <input name="data_envio" class="form-control" placeholder="Data de envio">
-                                <p class="help-block">Ex: dd/mm/aaaa</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Data de entrega:</label>
-                                <input name="data_entrega" class="form-control" placeholder="Data de entrega">
-                                <p class="help-block">Ex: dd/mm/aaaa</p>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Status:</label>
-                                <select name="status" class="form-control">
-                                    <option disabled selected>Selecione</option>
-                                    <option>Em preparação</option>
-                                    <option>A caminho</option>
-                                    <option>Entregue</option>
-                                    <option>Erro</option>
                                 </select>
                             </div>
 
@@ -208,8 +146,8 @@
 
 
                             <div class="form-group">
-                                <label>Observações:</label>
-                                <textarea name="observacoes" class="form-control" rows="3" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
+                                <label>Descrições:</label>
+                                <textarea name="descricao" class="form-control" rows="3" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-default">Enviar</button>

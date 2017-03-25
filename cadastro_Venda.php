@@ -98,7 +98,7 @@
 						<?php
                             include 'Classes.php';
 
-							$E = new Venda($_POST["cpf_remetente"], $_POST["cpf_destinatario"], $_POST["veiculo"], $_POST["peso"], $_POST["dimensao"], $_POST["data_envio"], $_POST["data_entrega"], $_POST["status"], $_POST["observacoes"]);
+							$E = new Venda($_POST["cpf_cliente"], $_POST["produto"], NULL, $_POST["descricao"]);
 
 							include 'class.db.php';
 							$C = new DB();
