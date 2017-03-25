@@ -100,7 +100,7 @@
                             $Codigo = $_POST["codigo"];
 
 							
-							$E = new Venda();
+							$E = new Venda(NULL, NULL, NULL, NULL);
 							
                             include 'class.db.php';
 							$C = new DB();
