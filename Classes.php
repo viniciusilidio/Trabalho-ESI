@@ -44,31 +44,21 @@ class Produto {
 }
 
 class Venda {
-	private $CPF_Remetente;
-	private $CPF_Destinatario;
-	private $Veiculo;
-	private $Peso;
-	private $Dimensao;
-	private $Data_envio;
-	private $Data_entrega;
-	private $Status;
+	private $CPF_Cliente;
+	private $ID_Produto;
+	private $Data_pedido;
 	private $Descricao;
 	private $Codigo;
 
-	public function Venda($cpf_remetente, $cpf_destinatario, $veiculo, $peso, $dimensao, $data_envio, $data_entrega, $status, $descricao) {
-		$this->CPF_Remetente = $cpf_remetente;
-		$this->CPF_Destinatario = $cpf_destinatario;
-		$this->Veiculo = $veiculo;
-		$this->Peso = $peso;
-		$this->Dimensao = $dimensao;
-		$this->Data_envio = $data_envio;
-		$this->Data_entrega = $data_entrega;
-		$this->Status = $status;
+	public function Venda($cpf_cliente, $id_produto, $data_pedido, $descricao) {
+		$this->CPF_Cliente = $cpf_cliente;
+		$this->ID_Produto = $id_produto;
+		$this->Data_pedido = $data_pedido;
 		$this->Descricao = $descricao;
 	}
 
 	public function AlteraVenda($C,$Codigo){
-		$query = "UPDATE Vendas SET Veiculo='".$this->Veiculo."', Peso=".$this->Peso.", Dimensao='".$this->Dimensao."', Descricao='".$this->Descricao."', Status='".$this->Status."' WHERE Codigo = ".$Codigo.";";
+		$query = "UPDATE Vendas SET ID_produto='".$this->ID_Produto."',Descricao='".$this->Descricao."' WHERE Codigo = ".$Codigo.";";
 
 		if ($C->query($query))
 			echo "<p>Venda $this->Codigo atualizada com sucesso!</p>";
@@ -77,7 +67,7 @@ class Venda {
 	}
 
 	public function InsereVenda($C){
-		$query = "INSERT INTO Vendas (CPF_Remetente,CPF_Destinatario,Veiculo,Peso,Dimensao,Data_envio, Data_entrega, Status,Descricao) VALUES ('".$this->CPF_Remetente."','".$this->CPF_Destinatario."','".$this->Veiculo."',".$this->Peso.",'".$this->Dimensao."','".$this->Data_envio."','".$this->Data_entrega."','".$this->Status."','".$this->Descricao."');";
+		$query = "INSERT INTO Vendas (CPF_Cliente,ID_produto,Descricao) VALUES ('".$this->CPF_Cliente."','".$this->ID_Produto."','".$this->Descricao."');";
 
 		if ($C->query($query))
 			echo "<p>Venda cadastrada com sucesso!</p>";
