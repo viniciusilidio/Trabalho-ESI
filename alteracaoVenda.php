@@ -100,11 +100,11 @@
 
                             $Codigo = $_POST["codigo"];
                             
-                            $E = new Encomenda(NULL,NULL,$_POST["veiculo"],$_POST["peso"],$_POST["dimensao"],NULL,$_POST["data_entrega"],$_POST["status"],$_POST["descricao"]);
+                            $E = new Venda(NULL,NULL,$_POST["veiculo"],$_POST["peso"],$_POST["dimensao"],NULL,$_POST["data_entrega"],$_POST["status"],$_POST["descricao"]);
 
                             include 'class.db.php';
 							$C = new DB();
-                            $E->AlteraEncomenda($C, $Codigo);
+                            $E->AlteraVenda($C, $Codigo);
 						?>
                     </div>
                 </div>

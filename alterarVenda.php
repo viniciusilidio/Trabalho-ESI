@@ -102,7 +102,7 @@
 
                                 $codigo = $_POST['codigo'];
 
-                                $query = "SELECT Codigo, Status, Veiculo, Peso, Dimensao, Data_entrega, Data_envio, Descricao FROM Encomendas WHERE Codigo = '".$codigo."';";
+                                $query = "SELECT Codigo, Status, Veiculo, Peso, Dimensao, Data_entrega, Data_envio, Descricao FROM Vendas WHERE Codigo = '".$codigo."';";
 
                                 //echo "QUERY: $query";
 
@@ -110,7 +110,7 @@
 
                                 foreach( $results as $row ){
                                     echo "
-                                    <form action='alteracaoEncomenda.php' method='post'>
+                                    <form action='alteracaoVenda.php' method='post'>
                                         <table class='table table-bordered table-hover table-striped'>";
                                         if ($row['Status']=='Entregue')
                                             $tstatus = "panel-green";

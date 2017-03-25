@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                            <form role='form' action='cadastro_Encomenda.php' method='post'>
+                            <form role='form' action='cadastro_Venda.php' method='post'>
 
                             <div class='form-group'>
                                 <label>CPF do remetente:</label>

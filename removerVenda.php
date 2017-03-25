@@ -100,11 +100,11 @@
                             $Codigo = $_POST["codigo"];
 
 							
-							$E = new Encomenda();
+							$E = new Venda();
 							
                             include 'class.db.php';
 							$C = new DB();
-							$E->RemoveEncomenda($C, $Codigo);
+							$E->RemoveVenda($C, $Codigo);
 						?>
                     </div>
                 </div>

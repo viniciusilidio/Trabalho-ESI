@@ -55,7 +55,7 @@ class Venda {
 	private $Descricao;
 	private $Codigo;
 
-	public function Encomenda($cpf_remetente, $cpf_destinatario, $veiculo, $peso, $dimensao, $data_envio, $data_entrega, $status, $descricao) {
+	public function Venda($cpf_remetente, $cpf_destinatario, $veiculo, $peso, $dimensao, $data_envio, $data_entrega, $status, $descricao) {
 		$this->CPF_Remetente = $cpf_remetente;
 		$this->CPF_Destinatario = $cpf_destinatario;
 		$this->Veiculo = $veiculo;
@@ -67,29 +67,29 @@ class Venda {
 		$this->Descricao = $descricao;
 	}
 
-	public function AlteraEncomenda($C,$Codigo){
-		$query = "UPDATE Encomendas SET Veiculo='".$this->Veiculo."', Peso=".$this->Peso.", Dimensao='".$this->Dimensao."', Descricao='".$this->Descricao."', Status='".$this->Status."' WHERE Codigo = ".$Codigo.";";
+	public function AlteraVenda($C,$Codigo){
+		$query = "UPDATE Vendas SET Veiculo='".$this->Veiculo."', Peso=".$this->Peso.", Dimensao='".$this->Dimensao."', Descricao='".$this->Descricao."', Status='".$this->Status."' WHERE Codigo = ".$Codigo.";";
 
 		if ($C->query($query))
-			echo "<p>Encomenda $this->Codigo atualizada com sucesso!</p>";
+			echo "<p>Venda $this->Codigo atualizada com sucesso!</p>";
 		
 		$C->disconnect();
 	}
 
-	public function InsereEncomenda($C){
-		$query = "INSERT INTO Encomendas (CPF_Remetente,CPF_Destinatario,Veiculo,Peso,Dimensao,Data_envio, Data_entrega, Status,Descricao) VALUES ('".$this->CPF_Remetente."','".$this->CPF_Destinatario."','".$this->Veiculo."',".$this->Peso.",'".$this->Dimensao."','".$this->Data_envio."','".$this->Data_entrega."','".$this->Status."','".$this->Descricao."');";
+	public function InsereVenda($C){
+		$query = "INSERT INTO Vendas (CPF_Remetente,CPF_Destinatario,Veiculo,Peso,Dimensao,Data_envio, Data_entrega, Status,Descricao) VALUES ('".$this->CPF_Remetente."','".$this->CPF_Destinatario."','".$this->Veiculo."',".$this->Peso.",'".$this->Dimensao."','".$this->Data_envio."','".$this->Data_entrega."','".$this->Status."','".$this->Descricao."');";
 
 		if ($C->query($query))
-			echo "<p>Encomenda cadastrada com sucesso!</p>";
+			echo "<p>Venda cadastrada com sucesso!</p>";
 
 		$C->disconnect();
 	}
 
-	public function RemoveEncomenda($C, $Codigo){
-		$query = "DELETE FROM Encomendas WHERE Codigo = '".$Codigo."';";
+	public function RemoveVenda($C, $Codigo){
+		$query = "DELETE FROM Vendas WHERE Codigo = '".$Codigo."';";
 
 		if ($C->query($query))
-			echo "<p>Encomenda $Codigo excluída com sucesso!</p>";
+			echo "<p>Venda $Codigo excluída com sucesso!</p>";
 
 		$C->disconnect();
 	}

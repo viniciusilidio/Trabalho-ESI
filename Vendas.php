@@ -87,7 +87,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Encomendas:
+                            Vendas:
                         </h1>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                                 include 'class.db.php';
                                 $C = new DB();
 
-                                $query = "SELECT Placa,VD,CPF_Remetente,Nome RNome, Sobrenome RSobrenome,Rua RRua,Numero RNumero,Complemento RComplemento,Bairro RBairro,Cidade RCidade,UF RUF,CEP RCEP,Telefone RTelefone,CPF_Destinatario,DNome,DSobrenome,DRua,DNumero,DComplemento,DBairro,DCidade,DUF,DCEP,DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,VD,CPF_Remetente,CPF_Destinatario, Nome DNome, Sobrenome DSobrenome,Rua DRua, Numero DNumero, Complemento DComplemento, Bairro DBairro, Cidade DCidade, UF DUF, CEP DCEP, Telefone DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,Veiculos.Descricao VD,CPF_Remetente,CPF_Destinatario,Peso,Dimensao,Codigo,Encomendas.Status ES,Encomendas.Descricao ED,Data_envio,Data_entrega FROM Veiculos JOIN Encomendas ON Veiculo = Placa ) AS T1 ON CPF = CPF_Destinatario ) AS T2 ON Clientes.CPF = CPF_Remetente;";
+                                $query = "SELECT Placa,VD,CPF_Remetente,Nome RNome, Sobrenome RSobrenome,Rua RRua,Numero RNumero,Complemento RComplemento,Bairro RBairro,Cidade RCidade,UF RUF,CEP RCEP,Telefone RTelefone,CPF_Destinatario,DNome,DSobrenome,DRua,DNumero,DComplemento,DBairro,DCidade,DUF,DCEP,DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,VD,CPF_Remetente,CPF_Destinatario, Nome DNome, Sobrenome DSobrenome,Rua DRua, Numero DNumero, Complemento DComplemento, Bairro DBairro, Cidade DCidade, UF DUF, CEP DCEP, Telefone DTelefone,Peso,Dimensao,Codigo,ES,ED,Data_envio,Data_entrega FROM Clientes JOIN ( SELECT Placa,Veiculos.Descricao VD,CPF_Remetente,CPF_Destinatario,Peso,Dimensao,Codigo,Vendas.Status ES,Vendas.Descricao ED,Data_envio,Data_entrega FROM Veiculos JOIN Vendas ON Veiculo = Placa ) AS T1 ON CPF = CPF_Destinatario ) AS T2 ON Clientes.CPF = CPF_Remetente;";
 
                                 $results = $C->get_results( $query );
                                 foreach( $results as $row ){
@@ -189,12 +189,12 @@
                                             </div>
                                             <div class='row'>
                                                 <div class='col-sm-6' align='right'>
-                                                    <form action='alterarEncomenda.php' method='post'>
+                                                    <form action='alterarVenda.php' method='post'>
                                                         <button name='codigo' value=".$row['Codigo']." type='submit' class='btn btn-primary'>Alterar</button>
                                                     </form>
                                                 </div>
                                                 <div class='col-sm-6'>
-                                                    <form action='removerEncomenda.php' method='post'>
+                                                    <form action='removerVenda.php' method='post'>
                                                         <button name='codigo' value=".$row['Codigo']." type='submit' class='btn btn-danger'>Remover</button>
                                                     </form>
                                                     <br><br>
