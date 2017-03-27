@@ -39,7 +39,7 @@ final class EmailTest extends TestCase
     {   
         $produto = new Produto("582","Pizza","TESTE","Teste","Disponível");
 
-        include 'tests/class.db.php';
+        include 'class.db.php';
 		$C = new DB();
 
         $produto->InsereProduto($C);
