@@ -87,115 +87,73 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Alterar venda:
+                            Nova venda:
                         </h1>
                     </div>
                 </div>
                 <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <?php 
-                                include 'class.db.php';
-                                $C = new DB();
+                    <div class="col-lg-6">
 
-                                $codigo = $_POST['codigo'];
+                            <form role='form' action='cadastro_Venda.php' method='post'>
 
-                                $query = "SELECT Codigo, Status, Veiculo, Peso, Dimensao, Data_entrega, Data_envio, Descricao FROM Vendas WHERE Codigo = '".$codigo."';";
+                            <div class='form-group'>
+                                <label>CPF do Cliente:</label>
+                                <select name="cpf_cliente" class="form-control" required>
+                                    <option disabled selected value="">Cliente</option>
+                                    <?php
+                                        include 'class.db.php';
+                                        $C = new DB();
+                                        $query = "SELECT CPF, Nome, Sobrenome FROM Clientes;";
 
-                                //echo "QUERY: $query";
+                                        $results = $C->get_results( $query );
+                                        foreach( $results as $row ){
+                                            echo "<option value='".$row[CPF]."'>".$row[CPF]." - ".$row[Nome]." ".$row[Sobrenome]."</option>";
+                                        }
+                                        
+                                        //$C->disconnect();
+                                    ?>
+                                </select>
+                            </div>
 
-                                $results = $C->get_results($query);
+                            <div class='form-group'>
+                                <label>Produto:</label>
+                                <select name="produto" class="form-control" required>
+                                    <option disabled selected value="">Produtos disponíveis</option>
+                                    <?php
+                                        //include 'class.db.php';
+                                        //$C = new DB();
+                                        $query = "SELECT Nome, ID, Descricao, Status FROM Produtos;";
 
-                                foreach( $results as $row ){
-                                    echo "
-                                    <form action='alteracaoVenda.php' method='post'>
-                                        <table class='table table-bordered table-hover table-striped'>";
-                                        if ($row['Status']=='Entregue')
-                                            $tstatus = "panel-green";
-                                        if ($row['Status']=='A caminho')
-                                            $tstatus = "panel-primary";
-                                        if ($row['Status']=='Erro')
-                                            $tstatus = "panel-red";
-                                        if ($row['Status']=='Em preparação')
-                                            $tstatus = "panel-yellow";
-                                        echo "
-                                        <div class='panel ".$tstatus."'>
-                                            <div class='panel-heading'>
-                                                <h3 class='panel-title'><strong>Código: </strong>".$row['Codigo']."</h3>
-                                            </div>
-                                            <div class='phpanel-body'>
-                                            <div class='row'>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Status:</strong>
-                                                        <select name='status' class='form-control'>
-                                                            <option>".$row['Status']."</option>
-                                                            <option>Em preparação</option>
-                                                            <option>A caminho</option>
-                                                            <option>Entregue</option>
-                                                            <option>Erro</option>
-                                                        </select></h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Veículo:</strong> <input class='form-control' type='text' name='veiculo' size='10' value=".$row['Veiculo']."></h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-2'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Peso:</strong> <input class='form-control' type='text' name='peso' size='10' value=".$row['Peso']."></h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-2'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Dimensão:</strong>
-                                                            <select name='dimensao' class='form-control'>
-                                                                <option>".$row['Dimensao']."</option>
-                                                                <option>Carta/Envelope</option>
-                                                                <option>XP</option>
-                                                                <option>P</option>
-                                                                <option>M</option>
-                                                                <option>G</option>
-                                                                <option>XG</option>
-                                                                <option>Tubo</option>
-                                                            </select>
-                                                        </h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class='row'>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Data do envio:</strong> ".$row['Data_envio']."</h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Data da entrega:</strong> <input class='form-control' type='text' name='data_entrega' size='10' value=".$row['Data_entrega']."></h3>
-                                                    </div>
-                                                </div>
-                                                <div class='col-sm-4'>
-                                                    <div class='panel-heading'>
-                                                        <h3 class='panel-title'><strong>Descrição:</strong> <input class='form-control' type='text' name='descricao' size='10' value=".$row['Descricao']."></h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class='row' align='center'>
-                                            <button name='codigo' value='".$row['Codigo']."' type='submit' class='btn btn-primary'>Salvar</button>
-                                            </div>
-                                            </table>
-                                        </form>
-                                    </div>";
-                                }
+                                        $results = $C->get_results( $query );
+                                        foreach( $results as $row ){
+                                            if ($row[Status]=='Disponível')
+                                                echo "<option value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]."</option>";
+                                            else
+                                                echo "<option disabled value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]." (".$row[Status].")</option>";
+                                        }
+                                        
+                                        $C->disconnect();
+                                    ?>
+                                </select>
+                            </div>
 
-                            ?>
-                                </tbody>
-                            </table>
-                        </div>
+                            <!--<div class="form-group">
+                                <label>Static Control</label>
+                                <p class="form-control-static">email@example.com</p>
+                            </div>-->
+
+
+                            <div class="form-group">
+                                <label>Descrições:</label>
+                                <textarea name="descricao" class="form-control" rows="3" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-default">Enviar</button>
+                            <button type="reset" class="btn btn-default">Limpar</button>
+                        </form>
+
                     </div>
                 </div>
                 <!-- /.row -->
