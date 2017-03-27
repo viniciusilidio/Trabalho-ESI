@@ -87,7 +87,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Nova venda:
+                            <?php
+                                $hiddenvalues = explode ("|",$_POST["codigo"]);
+                                $codigo = $hiddenvalues[0];
+                                $cpf = $hiddenvalues[1];
+                                $id_produto = $hiddenvalues[2];
+
+                                echo "Alterar venda ".$codigo.": ".$cpf." ".$id_produto." ;"
+                            ?>
                         </h1>
                     </div>
                 </div>
@@ -96,20 +103,30 @@
                 <div class="row">
                     <div class="col-lg-6">
 
-                            <form role='form' action='cadastro_Venda.php' method='post'>
+                            <form role='form' action='alteracaoVenda.php' method='post'>
 
                             <div class='form-group'>
                                 <label>CPF do Cliente:</label>
                                 <select name="cpf_cliente" class="form-control" required>
-                                    <option disabled selected value="">Cliente</option>
                                     <?php
                                         include 'class.db.php';
                                         $C = new DB();
+                                        // $query = "SELECT CPF, Nome, Sobrenome FROM Clientes WHERE CPF = '".$cpf."';";
+
+                                        // $results = $C->get_results( $query );
+                                        
+                                        // echo "<option selected value='".$results[0][CPF]."'>".$results[0][CPF]." - ".$results[0][Nome]." ".$results[0][Sobrenome]."</option>";
+
                                         $query = "SELECT CPF, Nome, Sobrenome FROM Clientes;";
 
                                         $results = $C->get_results( $query );
                                         foreach( $results as $row ){
-                                            echo "<option value='".$row[CPF]."'>".$row[CPF]." - ".$row[Nome]." ".$row[Sobrenome]."</option>";
+                                            if ($row[CPF] == $cpf) {
+                                                echo "<option selected value='".$row[CPF]."'>".$row[CPF]." - ".$row[Nome]." ".$row[Sobrenome]."</option>";
+                                            }
+                                            else {
+                                                echo "<option value='".$row[CPF]."'>".$row[CPF]." - ".$row[Nome]." ".$row[Sobrenome]."</option>";                                            
+                                            }
                                         }
                                         
                                         //$C->disconnect();
@@ -120,18 +137,21 @@
                             <div class='form-group'>
                                 <label>Produto:</label>
                                 <select name="produto" class="form-control" required>
-                                    <option disabled selected value="">Produtos disponíveis</option>
                                     <?php
                                         //include 'class.db.php';
                                         //$C = new DB();
+                                        
                                         $query = "SELECT Nome, ID, Descricao, Status FROM Produtos;";
 
                                         $results = $C->get_results( $query );
                                         foreach( $results as $row ){
-                                            if ($row[Status]=='Disponível')
-                                                echo "<option value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]."</option>";
-                                            else
-                                                echo "<option disabled value='".$row[ID]."'>".$row[Nome]." - ".$row[Descricao]." (".$row[Status].")</option>";
+                                            if ($row[ID] == $id_produto)
+                                                echo "<option selected value='".$row[ID]."'>".$row[Nome]." (".$row[Status].")</option>";
+                                            else 
+                                                if ($row[Status]=='Disponível')
+                                                    echo "<option value='".$row[ID]."'>".$row[Nome]." (".$row[Status].")</option>";
+                                                else
+                                                    echo "<option disabled value='".$row[ID]."'>".$row[Nome]." (".$row[Status].")</option>";
                                         }
                                         
                                         $C->disconnect();
@@ -139,15 +159,9 @@
                                 </select>
                             </div>
 
-                            <!--<div class="form-group">
-                                <label>Static Control</label>
-                                <p class="form-control-static">email@example.com</p>
-                            </div>-->
-
-
                             <div class="form-group">
                                 <label>Descrições:</label>
-                                <textarea name="descricao" class="form-control" rows="3" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
+                                <textarea name="descricao" class="form-control" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-default">Enviar</button>
