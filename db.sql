@@ -5,7 +5,6 @@ CREATE TABLE Produtos (
 	ID VARCHAR(8) NOT NULL,
 	Tipo VARCHAR(20) NOT NULL,
 	Nome VARCHAR(30) NOT NULL,
-	Preco FLOAT NOT NULL,
 	Descricao VARCHAR(255),
 	Status ENUM('Disponível', 'Não disponível'),
 	PRIMARY KEY(ID)
