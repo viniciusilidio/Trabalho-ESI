@@ -17,6 +17,24 @@ final class EmailTest extends TestCase
         );
     }
 
+    public function testNovoCliente()
+    {   
+        $produto = new Cliente(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+        $this->assertInstanceOf(
+            Cliente::class,
+            $produto
+        );
+    }
+
+    public function testNovoVenda()
+    {   
+        $produto = new Venda(NULL,NULL,NULL,NULL,NULL);
+        $this->assertInstanceOf(
+            Venda::class,
+            $produto
+        );
+    }
+
     public function testNovoProdutoBD()
     {   
         $produto = new Produto("582","Pizza","TESTE","Teste","Disponível");
