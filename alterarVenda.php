@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon-truck.ico">
+    <link rel="icon" href="">
 
     <title>Ranga Aqui!</title>
 
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#produtos"><i class="fa fa-fw fa-truck"></i> Produtos <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#produtos"><i class="fa fa-fw fa-cutlery"></i> Produtos <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="produtos" class="collapse">
                             <li>
                                <a href="cadastrarProduto.html"><i class="fa fa-fw fa-edit"></i>Cadastrar Produto</a>
@@ -136,7 +136,7 @@
 
                             <div class='form-group'>
                                 <label>Produto:</label>
-                                <select name="produto" class="form-control" required>
+                                <select name="id_produto" class="form-control" required>
                                     <?php
                                         //include 'class.db.php';
                                         //$C = new DB();
@@ -153,18 +153,24 @@
                                                 else
                                                     echo "<option disabled value='".$row[ID]."'>".$row[Nome]." (".$row[Status].")</option>";
                                         }
-                                        
-                                        $C->disconnect();
                                     ?>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label>Descrições:</label>
-                                <textarea name="descricao" class="form-control" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."></textarea>
-                            </div>
+                                <textarea name="descricao" class="form-control" placeholder="Ponto de referência, entregar nas mãos de certa pessoa, urgência..."><?php
+                                    $query = "SELECT Descricao FROM Vendas WHERE Codigo = '".$codigo."';";
 
-                            <button type="submit" class="btn btn-default">Enviar</button>
+                                    $results = $C->get_results( $query );
+                                    echo "".$results[0]["Descricao"]."" ;
+
+                                    $C->disconnect();
+                                ?></textarea>
+                            </div>
+                            <?php
+                                echo "<button name='codigo' value='".$codigo."' type='submit' class='btn btn-default'>Enviar</button>";
+                            ?>
                             <button type="reset" class="btn btn-default">Limpar</button>
                         </form>
 

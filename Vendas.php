@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon-truck.ico">
+    <link rel="icon" href="">
 
     <title>Ranga Aqui!</title>
 
@@ -64,7 +64,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#produtos"><i class="fa fa-fw fa-truck"></i> Produtos <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#produtos"><i class="fa fa-fw fa-cutlery"></i> Produtos <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="produtos" class="collapse">
                             <li>
                                <a href="cadastrarProduto.html"><i class="fa fa-fw fa-edit"></i>Cadastrar Produto</a>
@@ -158,7 +158,7 @@
                                             <div class='row'>
                                                 <div class='col-sm-6' align='right'>
                                                     <form action='alterarVenda.php' method='post'>
-                                                        <button name='codigo' value=".$row['Codigo']." type='submit' class='btn btn-primary'>Alterar</button>
+                                                        <button name='codigo' value=".$row['Codigo'].'|'.$row['CPF_Cliente'].'|'.$row['ID_produto']." type='submit' class='btn btn-primary'>Alterar</button>
                                                     </form>
                                                 </div>
                                                 <div class='col-sm-6'>
